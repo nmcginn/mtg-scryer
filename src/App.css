@@ -1,0 +1,47 @@
+/* https://adobe.ly/2wqz0mI */
+
+.App {
+  text-align: center;
+}
+
+.Card {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 2px;
+}
+
+.CardArt {
+  width: 240px;
+  height: auto;
+  border: 3px solid transparent;
+}
+
+.CardArt:hover {
+  border: 3px solid #3367D6;
+  border-radius: 17px;
+}
+
+.DeckBox {}
+
+.header {
+  background-color: #152A56;
+  line-height: 1.25;
+  overflow: hidden;
+  padding: 8px;
+}
+
+body {
+  height: 600px;
+  min-width: 500px;
+  overflow-y: scroll;
+}
+
+input[type=text] {
+  background-color: #152A56;
+  border: 1px solid #7393D6;
+  color: #FFF;
+  font-size: 16px;
+  padding: 9px 8px 9px 8px;
+  outline: none;
+  width: 100%;
+}
