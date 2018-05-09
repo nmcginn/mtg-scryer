@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+- '8'
+script:
+- npm run build
+- zip -r release.zip build/
+deploy:
+  provider: releases
+  api_key:
+    secure: NKmiGOq09WpSCfVOLcHfLoB6Bx6mJcL4iK5GSxI8y4+WprfOImb5IpisYGW4uMlXIwjxLHmF/jo+IUiKsf27Tn5cCGOxJdVnhASA945CcQbrnnEPuVPM7AvdMpbfPItxUF7iefriA+nYn+ptIBQAvCnfpd1mvCfm/o+5rOCoK1BQIszh/jVlhvTmqbXJmcfYAor8j3uc63MaVdlBzAECrr+hH1KaxBdfSCbOzq5aycESNLogJzVu2JHKO8NtZWp0xE+TYFiWb/jEIQYOfUsGgugg1bUMB0htxkmquvrSxLn7xAicLHTIlLoZVL3k7ueAyxZD+41qcBtNRNAiYymAOhnga49AUsIvbDWwMmK39o2eOro3airjt5ekuNtadZ/VaAPHjdxTawW3ILXeG6/cZyc/5wQkF6xmBqxrN1iSDlPZGAlMphQjQX6YDMbGPsHZD00ZTQJB5tq0yRIWhOHLAyc29uoV4gAR/yLMPCsqjKp3GJ1HcG/4OGXAf+aATZrrvUWJwZYvM1T20L3daMBViRUuGiDkMW3BMoTF6cHZkNhleCvqf1NX5aFt/wu4O+KPuw1lkXred+mC4JOZonaKPmApV7T4bpRzXXY6uN8CuInX2MpgIl00J6zhJkp7sqb3+t6yCBDAFbJ83sexvGTdHccAmeiNsvAHZ6sppk/nsNk=
+  file: release.zip
+  skip_cleanup: true
+  on:
+    repo: nmcginn/mtg-scryer
+    tags: true
