@@ -44,12 +44,19 @@ export default class App extends Component {
     }
   }
 
+  handleClick(event) {
+    console.log('this should probably do some manner of thing');
+  }
+
   render() {
     const defaultResponse = (
       <div className="App">
         <div className="header">
           <input type="text" autoFocus="on" spellCheck="false" maxLength="512"
             value={this.state.value} onChange={this.handleChange} />
+          <button id="advanced" onClick={this.handleClick}>
+            Advanced
+          </button>
         </div>
       </div>
     );
@@ -68,6 +75,9 @@ export default class App extends Component {
           <div className="header">
             <input type="text" autoFocus="on" spellCheck="false" maxLength="512"
               value={this.state.value} onChange={this.handleChange} />
+            <button id="advanced" onClick={this.handleClick}>
+              Advanced
+            </button>
           </div>
           <div className="DeckBox">{cardElements}</div>
         </div>

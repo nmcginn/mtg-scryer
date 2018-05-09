@@ -30,6 +30,18 @@
   padding: 8px;
 }
 
+#advanced {
+  background-color: white;
+  border: 1px solid #3367D6;
+  border-radius: 5px;
+  color: #3367D6;
+  font-size: 16px;
+  float: right;
+  margin: 8px 0 0 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
 body {
   height: 600px;
   min-width: 500px;
@@ -40,8 +52,9 @@ input[type=text] {
   background-color: #152A56;
   border: 1px solid #7393D6;
   color: #FFF;
+  float: left;
   font-size: 16px;
   padding: 9px 8px 9px 8px;
   outline: none;
-  width: 100%;
+  width: 450px;
 }
