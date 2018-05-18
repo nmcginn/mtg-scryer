@@ -9,9 +9,11 @@ export default class App extends Component {
       searchValue: '',
       error: false,
       loaded: false,
-      data: null
+      data: null,
+      advanced: false
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.displayCards = this.displayCards.bind(this);
   }
 
@@ -45,11 +47,23 @@ export default class App extends Component {
   }
 
   handleClick(event) {
-    console.log('this should probably do some manner of thing');
+    this.setState({
+      advanced: !this.state.advanced
+    });
   }
 
   render() {
-    const defaultResponse = (
+    const cards = this.state.data;
+    let cardElements = [];
+    if (cards !== null && cards.length > 0) {
+      cardElements = cards.map(card =>
+        <Card image={typeof card.image_uris === 'undefined' ?
+            card.card_faces[0].image_uris.normal :
+            card.image_uris.normal}
+          name={card.name} link={card.scryfall_uri} key={card.id} />
+      );
+    }
+    return(
       <div className="App">
         <div className="header">
           <input type="text" autoFocus="on" spellCheck="false" maxLength="512"
@@ -58,30 +72,8 @@ export default class App extends Component {
             Advanced
           </button>
         </div>
+        <div className="DeckBox">{cardElements}</div>
       </div>
     );
-    if (this.state.data == null || this.state.data.length < 1) {
-      return defaultResponse;
-    } else {
-      const cards = this.state.data;
-      const cardElements = cards.map(card =>
-        <Card image={typeof card.image_uris === 'undefined' ?
-            card.card_faces[0].image_uris.normal :
-            card.image_uris.normal}
-          name={card.name} link={card.scryfall_uri} key={card.id} />
-      );
-      return(
-        <div className="App">
-          <div className="header">
-            <input type="text" autoFocus="on" spellCheck="false" maxLength="512"
-              value={this.state.value} onChange={this.handleChange} />
-            <button id="advanced" onClick={this.handleClick}>
-              Advanced
-            </button>
-          </div>
-          <div className="DeckBox">{cardElements}</div>
-        </div>
-      );
-    }
   }
 }
