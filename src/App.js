@@ -71,7 +71,15 @@ export default class App extends Component {
           <button id="advanced" onClick={this.handleClick}>
             Advanced
           </button>
-          <div className={this.state.advanced ? "advanced-show" : "advanced-hide"}></div>
+          <div className={this.state.advanced ? "advanced-show" : "advanced-hide"}>
+            <div className="mana-filters">
+              <i className="ms ms-w ms-cost"></i>
+              <i className="ms ms-u ms-cost"></i>
+              <i className="ms ms-b ms-cost"></i>
+              <i className="ms ms-r ms-cost"></i>
+              <i className="ms ms-g ms-cost"></i>
+            </div>
+          </div>
         </div>
         <div className="DeckBox">{cardElements}</div>
       </div>
