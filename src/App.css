@@ -42,6 +42,23 @@
   vertical-align: middle;
 }
 
+@keyframes fadein {
+  0%   { background-color: white; }
+  100% { background-color: #152A56; }
+}
+
+.advanced-show {
+  /*animation: fadein 1s;*/
+  background-color: #152A56;
+  clear: both;
+  height: 30px;
+  width: 600px;
+}
+
+.advanced-hide {
+  display: none;
+}
+
 body {
   height: 600px;
   min-width: 500px;
