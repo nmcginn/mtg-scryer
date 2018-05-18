@@ -48,7 +48,7 @@
 }
 
 .advanced-show {
-  animation: fadein 1s ease-out;
+  animation: fadein 0.5s ease-out;
   background-color: #152A56;
   clear: both;
   height: 30px;
