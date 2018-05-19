@@ -26,7 +26,6 @@ export default class App extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleColor = this.handleColor.bind(this);
     this.displayCards = this.displayCards.bind(this);
   }
 
@@ -38,9 +37,37 @@ export default class App extends Component {
   }
 
   handleChange(event) {
-    const searchValue = event.target.value;
-    this.setState({searchValue: searchValue});
-    if (searchValue.length >= 4) {
+    const eventClass = event.target.className;
+    let searchValue = this.state.searchValue;
+    let colors = this.state.colors;
+    let oracle = this.state.oracle;
+    let typeline = this.state.typeline;
+    let format = this.state.format;
+    let rarity = this.state.rarity;
+    if (eventClass.includes('ms-cost')) {
+      const color = event.target.id.replace('ms-', '');
+      colors = this.state.colors;
+      colors[color] = !colors[color];
+      this.setState(colors: colors);
+    } else if (eventClass.includes('main-search')) {
+      searchValue = event.target.value;
+      this.setState({searchValue: searchValue});
+    } else if (eventClass.includes('oracle')) {
+      oracle = event.target.value;
+      this.setState({'oracle': oracle});
+    } else if (eventClass.includes('type-line')) {
+      typeline = event.target.value;
+      this.setState({'typeline': typeline});
+    } else if (eventClass.includes('legality')) {
+      format = event.target.value;
+      this.setState({'format': format});
+    } else if (eventClass.includes('rarity')) {
+      rarity = event.target.value;
+      this.setState({'rarity': rarity});
+    }
+    // TODO: find a more advanced way to find "legitimate" searches
+    // should be able to support browsing format + colors, etc.
+    if (searchValue.length >= 4 || oracle.length >= 4 || typeline >= 4) {
       const searchApi = 'https://api.scryfall.com/cards/search/?q=' + encodeURIComponent(searchValue);
       fetch(searchApi)
         .then(res => res.json())
@@ -60,16 +87,10 @@ export default class App extends Component {
   }
 
   handleClick(event) {
+    console.log(event.target.className);
     this.setState({
       advanced: !this.state.advanced
     });
-  }
-
-  handleColor(event) {
-    const color = event.target.id.replace('ms-', '');
-    let colors = this.state.colors;
-    colors[color] = !colors[color];
-    this.setState(colors: colors);
   }
 
   render() {
@@ -96,20 +117,8 @@ export default class App extends Component {
             Advanced
           </button>
           <div className={this.state.advanced ? "advanced-show" : "advanced-hide"}>
-            <div className="mana-filters adv-section">
-              <i onClick={this.handleColor} id="ms-w" className={colorClass[0]}></i>
-              <i onClick={this.handleColor} id="ms-u" className={colorClass[1]}></i>
-              <i onClick={this.handleColor} id="ms-b" className={colorClass[2]}></i>
-              <i onClick={this.handleColor} id="ms-r" className={colorClass[3]}></i>
-              <i onClick={this.handleColor} id="ms-g" className={colorClass[4]}></i>
-              <i onClick={this.handleColor} id="ms-c" className={colorClass[5]}></i>
-            </div>
-            <input className="oracle hdr-input adv-section" placeholder="Oracle Text"
-              type="text" spellCheck="false" maxLength="512" />
-            <input className="type-line hdr-input adv-section" placeholder="Type Line"
-              type="text" spellCheck="false" maxLength="512" />
             <div className="legality adv-section">
-              <select>
+              <select className="legality-select" onChange={this.handleChange}>
                 <option value="any">Format: Any</option>
                 <option value="standard">Standard</option>
                 <option value="modern">Modern</option>
@@ -119,14 +128,26 @@ export default class App extends Component {
                 <option value="commender">Commander</option>
               </select>
             </div>
+            <input className="type-line hdr-input adv-section" placeholder="Type Line"
+              type="text" spellCheck="false" maxLength="512" onChange={this.handleChange} />
+            <input className="oracle hdr-input adv-section" placeholder="Oracle Text"
+              type="text" spellCheck="false" maxLength="512" onChange={this.handleChange} />
             <div className="rarity adv-section">
-              <select>
+              <select className="rarity-select" onChange={this.handleChange}>
                 <option value="any">Rarity: Any</option>
                 <option value="common">Common</option>
                 <option value="uncommon">Uncommon</option>
                 <option value="rare">Rare</option>
                 <option value="mythic">Mythic Rare</option>
               </select>
+            </div>
+            <div className="mana-filters adv-section">
+              <i onClick={this.handleChange} id="ms-w" className={colorClass[0]}></i>
+              <i onClick={this.handleChange} id="ms-u" className={colorClass[1]}></i>
+              <i onClick={this.handleChange} id="ms-b" className={colorClass[2]}></i>
+              <i onClick={this.handleChange} id="ms-r" className={colorClass[3]}></i>
+              <i onClick={this.handleChange} id="ms-g" className={colorClass[4]}></i>
+              <i onClick={this.handleChange} id="ms-c" className={colorClass[5]}></i>
             </div>
           </div>
         </div>
