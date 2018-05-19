@@ -10,10 +10,23 @@ export default class App extends Component {
       error: false,
       loaded: false,
       data: null,
-      advanced: false
+      advanced: false,
+      colors: {
+        w: true,
+        u: true,
+        b: true,
+        r: true,
+        g: true,
+        c: true
+      },
+      oracle: '',
+      typeline: '',
+      format: 'any',
+      rarity: 'any'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleColor = this.handleColor.bind(this);
     this.displayCards = this.displayCards.bind(this);
   }
 
@@ -52,6 +65,13 @@ export default class App extends Component {
     });
   }
 
+  handleColor(event) {
+    const color = event.target.id.replace('ms-', '');
+    let colors = this.state.colors;
+    colors[color] = !colors[color];
+    this.setState(colors: colors);
+  }
+
   render() {
     const cards = this.state.data;
     let cardElements = [];
@@ -63,6 +83,9 @@ export default class App extends Component {
           name={card.name} link={card.scryfall_uri} key={card.id} />
       );
     }
+    const colorClass = ['w','u','b','r','g','c'].map(color =>
+      `ms ms-${color} ms-cost ${this.state.colors[color] ? '' : 'ms-deselect'}`
+    );
     return(
       <div className="App">
         <div className="header">
@@ -74,12 +97,12 @@ export default class App extends Component {
           </button>
           <div className={this.state.advanced ? "advanced-show" : "advanced-hide"}>
             <div className="mana-filters adv-section">
-              <i className="ms ms-w ms-cost"></i>
-              <i className="ms ms-u ms-cost"></i>
-              <i className="ms ms-b ms-cost"></i>
-              <i className="ms ms-r ms-cost"></i>
-              <i className="ms ms-g ms-cost"></i>
-              <i className="ms ms-c ms-cost"></i>
+              <i onClick={this.handleColor} id="ms-w" className={colorClass[0]}></i>
+              <i onClick={this.handleColor} id="ms-u" className={colorClass[1]}></i>
+              <i onClick={this.handleColor} id="ms-b" className={colorClass[2]}></i>
+              <i onClick={this.handleColor} id="ms-r" className={colorClass[3]}></i>
+              <i onClick={this.handleColor} id="ms-g" className={colorClass[4]}></i>
+              <i onClick={this.handleColor} id="ms-c" className={colorClass[5]}></i>
             </div>
             <input className="oracle hdr-input adv-section" placeholder="Oracle Text"
               type="text" spellCheck="false" maxLength="512" />
