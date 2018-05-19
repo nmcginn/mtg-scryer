@@ -22,7 +22,8 @@ export default class App extends Component {
       oracle: '',
       typeline: '',
       format: 'any',
-      rarity: 'any'
+      rarity: 'any',
+      sort: 'name'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -44,6 +45,7 @@ export default class App extends Component {
     let typeline = this.state.typeline;
     let format = this.state.format;
     let rarity = this.state.rarity;
+    let sort = this.state.sort;
     if (eventClass.includes('ms-cost')) {
       const color = event.target.id.replace('ms-', '');
       colors = this.state.colors;
@@ -64,11 +66,14 @@ export default class App extends Component {
     } else if (eventClass.includes('rarity')) {
       rarity = event.target.value;
       this.setState({'rarity': rarity});
+    } else if (eventClass.includes('sort')) {
+      sort = event.target.value;
+      this.setState({'sort': sort});
     }
     // build out out search string: https://scryfall.com/docs/reference
     // using a counter to determine when a query is legitimate/non-empty
     let counter = 0;
-    let query = searchValue;
+    let query = searchValue + ' order:' + sort;
     if (oracle.length >= 4) {
       query = query + ' o:"' + oracle + '"';
       counter++;
@@ -138,6 +143,14 @@ export default class App extends Component {
           <input type="text" autoFocus="on" spellCheck="false"
             className="main-search" maxLength="512" placeholder="Card Search"
             value={this.state.value} onChange={this.handleChange} />
+          <select id="sort" className="sort" onChange={this.handleChange}>
+            <option value="name">Name</option>
+            <option value="cmc">CMC</option>
+            <option value="usd">Price (USD)</option>
+            <option value="set">Set</option>
+            <option value="rarity">Rarity</option>
+            <option value="edhrec">EDHREC</option>
+          </select>
           <button id="advanced" onClick={this.handleClick}>
             Advanced
           </button>
