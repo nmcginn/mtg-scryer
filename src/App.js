@@ -79,6 +79,7 @@ export default class App extends Component {
               <i className="ms ms-b ms-cost"></i>
               <i className="ms ms-r ms-cost"></i>
               <i className="ms ms-g ms-cost"></i>
+              <i className="ms ms-c ms-cost"></i>
             </div>
             <input className="oracle hdr-input adv-section" placeholder="Oracle Text"
               type="text" spellCheck="false" maxLength="512" />

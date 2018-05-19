@@ -69,6 +69,11 @@
   margin: 3px;
 }
 
+/* Start w/ WUBRG preselected */
+.ms-deselect {
+  opacity: 0.5;
+}
+
 body {
   height: 600px;
   min-width: 500px;
@@ -101,7 +106,7 @@ input[type=text]::placeholder {
 }
 
 .hdr-input {
-  max-width: 108px;
+  max-width: 95px;
   margin: 3px 3px 0 0;
   padding: 0 3px 0 3px;
 }
