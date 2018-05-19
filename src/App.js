@@ -66,18 +66,43 @@ export default class App extends Component {
     return(
       <div className="App">
         <div className="header">
-          <input type="text" autoFocus="on" spellCheck="false" maxLength="512"
+          <input type="text" autoFocus="on" spellCheck="false"
+            className="main-search" maxLength="512" placeholder="Card Search"
             value={this.state.value} onChange={this.handleChange} />
           <button id="advanced" onClick={this.handleClick}>
             Advanced
           </button>
           <div className={this.state.advanced ? "advanced-show" : "advanced-hide"}>
-            <div className="mana-filters">
+            <div className="mana-filters adv-section">
               <i className="ms ms-w ms-cost"></i>
               <i className="ms ms-u ms-cost"></i>
               <i className="ms ms-b ms-cost"></i>
               <i className="ms ms-r ms-cost"></i>
               <i className="ms ms-g ms-cost"></i>
+            </div>
+            <input className="oracle hdr-input adv-section" placeholder="Oracle Text"
+              type="text" spellCheck="false" maxLength="512" />
+            <input className="type-line hdr-input adv-section" placeholder="Type Line"
+              type="text" spellCheck="false" maxLength="512" />
+            <div className="legality adv-section">
+              <select>
+                <option value="any">Format: Any</option>
+                <option value="standard">Standard</option>
+                <option value="modern">Modern</option>
+                <option value="legacy">Legacy</option>
+                <option value="vintage">Vintage</option>
+                <option value="pauper">Pauper</option>
+                <option value="commender">Commander</option>
+              </select>
+            </div>
+            <div className="rarity adv-section">
+              <select>
+                <option value="any">Rarity: Any</option>
+                <option value="common">Common</option>
+                <option value="uncommon">Uncommon</option>
+                <option value="rare">Rare</option>
+                <option value="mythic">Mythic Rare</option>
+              </select>
             </div>
           </div>
         </div>

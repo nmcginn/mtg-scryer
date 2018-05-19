@@ -58,8 +58,10 @@
   display: none;
 }
 
-.mana-filters {
+.adv-section {
+  float: left;
   line-height: 2;
+  margin: 0 0 0 3px;
   text-align: left;
 }
 
@@ -73,13 +75,39 @@ body {
   overflow-y: scroll;
 }
 
+select {
+  -webkit-appearance: menulist-button;
+  background-color: #152A56;
+  border-radius: 3px;
+  border: 1px solid #7393D6;
+  color: #FFF;
+  height: 28px;
+}
+
+option:checked {
+  display: none;
+}
+
 input[type=text] {
   background-color: #152A56;
   border: 1px solid #7393D6;
   color: #FFF;
   float: left;
+  outline: none;
+}
+
+input[type=text]::placeholder {
+  color: #CCC;
+}
+
+.hdr-input {
+  max-width: 107px;
+  margin: 3px 3px 0 0;
+  padding: 0 3px 0 3px;
+}
+
+.main-search {
   font-size: 16px;
   padding: 9px 8px 9px 8px;
-  outline: none;
   width: 450px;
 }
