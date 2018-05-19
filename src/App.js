@@ -73,24 +73,24 @@ export default class App extends Component {
     // build out out search string: https://scryfall.com/docs/reference
     // using a counter to determine when a query is legitimate/non-empty
     let counter = 0;
-    let query = searchValue + ' order:' + sort;
+    let query = `${searchValue} order:${sort}`;
     if (oracle.length >= 4) {
-      query = query + ' o:"' + oracle + '"';
+      query = `${query} o:"${oracle}"`;
       counter++;
     }
     if (typeline.length >= 4) {
-      query = query + ' t:"' + typeline + '"';
+      query = `${query} t:"${typeline}"`;
       counter++;
     }
     let colorQuery = Object.keys(colors).filter(function(x){return colors[x]}).join('');
     if (colorQuery === '') colorQuery = 'c';
-    query = query + ' c<=' + colorQuery;
+    query = `${query} c<=${colorQuery}`;
     if (format !== 'any' && format !== '') {
-      query = query + ' f:' + format;
+      query = `${query} f:${format}`;
       counter++;
     }
     if (rarity !== 'any' && rarity !== '') {
-      query = query + ' r:' + rarity;
+      query = `${query} r:${rarity}`;
       counter++;
     }
     if (searchValue.length >= 4) counter++;
