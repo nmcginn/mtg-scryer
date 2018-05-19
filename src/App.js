@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Notyf from './notyf/dist/notyf.min.js';
 import Card from './Card.js';
 
 export default class App extends Component {
@@ -65,19 +66,32 @@ export default class App extends Component {
       this.setState({'rarity': rarity});
     }
     // build out out search string: https://scryfall.com/docs/reference
+    // using a counter to determine when a query is legitimate/non-empty
+    let counter = 0;
     let query = searchValue;
     if (oracle.length >= 4) {
       query = query + ' o:"' + oracle + '"';
+      counter++;
     }
     if (typeline.length >= 4) {
       query = query + ' t:"' + typeline + '"';
+      counter++;
     }
     let colorQuery = Object.keys(colors).filter(function(x){return colors[x]}).join('');
     if (colorQuery === '') colorQuery = 'c';
     query = query + ' c<=' + colorQuery;
+    if (format !== 'any' && format !== '') {
+      query = query + ' f:' + format;
+      counter++;
+    }
+    if (rarity !== 'any' && rarity !== '') {
+      query = query + ' r:' + rarity;
+      counter++;
+    }
+    if (searchValue.length >= 4) counter++;
     // TODO: find a more advanced way to find "legitimate" searches
     // should be able to support browsing format + colors, etc.
-    if (searchValue.length >= 4) {
+    if (counter >= 2 || searchValue.length >= 4) {
       const searchApi = 'https://api.scryfall.com/cards/search/?q=' + encodeURIComponent(query);
       fetch(searchApi)
         .then(res => res.json())
@@ -87,6 +101,7 @@ export default class App extends Component {
             loaded: true,
             error
           });
+          new Notyf().alert('An error occurred, please retry your search.');
         });
     } else if (searchValue.length < 1) {
       this.setState({

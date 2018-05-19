@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'mana-font/css/mana.css';
+import 'notyf/dist/notyf.min.css'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 

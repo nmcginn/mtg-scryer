@@ -33,7 +33,7 @@
 #advanced {
   background-color: white;
   border: 1px solid #3367D6;
-  border-radius: 5px;
+  border-radius: 3px;
   color: #3367D6;
   font-size: 16px;
   float: right;
@@ -96,6 +96,7 @@ option:checked {
 input[type=text] {
   background-color: #152A56;
   border: 1px solid #7393D6;
+  border-radius: 3px;
   color: #FFF;
   float: left;
   outline: none;
@@ -106,7 +107,7 @@ input[type=text]::placeholder {
 }
 
 .hdr-input {
-  max-width: 95px;
+  max-width: 110px;
   margin: 3px 3px 0 0;
   padding: 0 3px 0 3px;
 }
