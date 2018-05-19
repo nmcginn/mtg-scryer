@@ -16,8 +16,7 @@ export default class App extends Component {
         u: true,
         b: true,
         r: true,
-        g: true,
-        c: true
+        g: true
       },
       oracle: '',
       typeline: '',
@@ -65,10 +64,21 @@ export default class App extends Component {
       rarity = event.target.value;
       this.setState({'rarity': rarity});
     }
+    // build out out search string: https://scryfall.com/docs/reference
+    let query = searchValue;
+    if (oracle.length >= 4) {
+      query = query + ' o:"' + oracle + '"';
+    }
+    if (typeline.length >= 4) {
+      query = query + ' t:"' + typeline + '"';
+    }
+    let colorQuery = Object.keys(colors).filter(function(x){return colors[x]}).join('');
+    if (colorQuery === '') colorQuery = 'c';
+    query = query + ' c<=' + colorQuery;
     // TODO: find a more advanced way to find "legitimate" searches
     // should be able to support browsing format + colors, etc.
-    if (searchValue.length >= 4 || oracle.length >= 4 || typeline >= 4) {
-      const searchApi = 'https://api.scryfall.com/cards/search/?q=' + encodeURIComponent(searchValue);
+    if (searchValue.length >= 4) {
+      const searchApi = 'https://api.scryfall.com/cards/search/?q=' + encodeURIComponent(query);
       fetch(searchApi)
         .then(res => res.json())
         .then((result) => this.displayCards(result),
@@ -96,7 +106,7 @@ export default class App extends Component {
   render() {
     const cards = this.state.data;
     let cardElements = [];
-    if (cards !== null && cards.length > 0) {
+    if (cards !== null && typeof(cards) !== 'undefined' && cards.length > 0) {
       cardElements = cards.map(card =>
         <Card image={typeof card.image_uris === 'undefined' ?
             card.card_faces[0].image_uris.normal :
@@ -104,7 +114,7 @@ export default class App extends Component {
           name={card.name} link={card.scryfall_uri} key={card.id} />
       );
     }
-    const colorClass = ['w','u','b','r','g','c'].map(color =>
+    const colorClass = ['w','u','b','r','g'].map(color =>
       `ms ms-${color} ms-cost ${this.state.colors[color] ? '' : 'ms-deselect'}`
     );
     return(
@@ -147,7 +157,6 @@ export default class App extends Component {
               <i onClick={this.handleChange} id="ms-b" className={colorClass[2]}></i>
               <i onClick={this.handleChange} id="ms-r" className={colorClass[3]}></i>
               <i onClick={this.handleChange} id="ms-g" className={colorClass[4]}></i>
-              <i onClick={this.handleChange} id="ms-c" className={colorClass[5]}></i>
             </div>
           </div>
         </div>
