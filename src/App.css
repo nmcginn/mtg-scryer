@@ -61,7 +61,7 @@
 .adv-section {
   float: left;
   line-height: 2;
-  margin: 0 0 0 3px;
+  margin: 0 3px 0 0;
   text-align: left;
 }
 
@@ -101,7 +101,7 @@ input[type=text]::placeholder {
 }
 
 .hdr-input {
-  max-width: 107px;
+  max-width: 108px;
   margin: 3px 3px 0 0;
   padding: 0 3px 0 3px;
 }
