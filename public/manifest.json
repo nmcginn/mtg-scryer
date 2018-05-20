@@ -1,6 +1,6 @@
 {
 	"name": "MTG Scryer",
-	"version": "0.2",
+	"version": "0.2.1",
 	"description": "A quick Magic the Gathering card search extension.",
 	"permissions":["declarativeContent"],
 	"background": {
