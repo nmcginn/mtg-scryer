@@ -1,7 +1,17 @@
 /* https://adobe.ly/2wqz0mI */
 
+body {
+  border: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 0;
+}
+
 .App {
+  margin: 0;
   text-align: center;
+  width: 500px;
 }
 
 .Card {
@@ -11,7 +21,7 @@
 }
 
 .CardArt {
-  width: 240px;
+  width: 235px;
   height: auto;
   border: 3px solid transparent;
 }
@@ -26,6 +36,7 @@
 .header {
   background-color: #152A56;
   line-height: 1.25;
+  max-width: 484px;
   overflow: hidden;
   padding: 8px;
 }
@@ -52,7 +63,7 @@
   animation: fadein 0.5s ease-out;
   background-color: #152A56;
   clear: both;
-  width: 600px;
+  width: 500px;
 }
 
 .advanced-hide {
@@ -62,7 +73,7 @@
 .adv-section {
   float: left;
   line-height: 2;
-  margin: 0 3px 0 0;
+  margin: 4px 3px 0 0;
   text-align: left;
 }
 
@@ -108,15 +119,20 @@ input[type=text]::placeholder {
 }
 
 .hdr-input {
-  max-width: 110px;
-  margin: 3px 3px 0 0;
+  max-width: 70px;
   padding: 0 3px 0 3px;
 }
 
 .main-search {
   font-size: 16px;
   padding: 9px 8px 9px 8px;
-  width: 420px;
+  width: 340px;
+}
+
+.mana-filters {
+  font-size: 15px;
+  line-height: 2;
+  margin: 2px 0 0 0;
 }
 
 #sort {
