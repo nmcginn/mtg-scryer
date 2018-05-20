@@ -1,0 +1,33 @@
+{
+  "folders":
+  [
+    {
+      "path": "src"
+    },
+    {
+      "path": "public"
+    },
+    {
+      "path": "scripts"
+    }
+  ],
+  "settings":
+  {
+    "tab_size": 2,
+    "translate_tabs_to_spaces": true
+  },
+  "build_systems":
+  [
+    {
+      "name": "Build",
+      "shell_cmd": "./scripts/build.sh"
+    },
+    {
+      "name": "Run",
+      "shell_cmd": "./scripts/run.sh"
+    }
+  ],
+  "syntax_override": {
+    "\\.js$": ["Babel", "JavaScript (Babel)"]
+  }
+}

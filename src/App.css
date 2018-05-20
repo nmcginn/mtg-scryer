@@ -1,7 +1,17 @@
 /* https://adobe.ly/2wqz0mI */
 
+body {
+  border: 0;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 0;
+}
+
 .App {
+  margin: 0;
   text-align: center;
+  width: 500px;
 }
 
 .Card {
@@ -11,7 +21,7 @@
 }
 
 .CardArt {
-  width: 240px;
+  width: 235px;
   height: auto;
   border: 3px solid transparent;
 }
@@ -26,8 +36,54 @@
 .header {
   background-color: #152A56;
   line-height: 1.25;
+  max-width: 484px;
   overflow: hidden;
   padding: 8px;
+}
+
+#advanced {
+  background-color: #152A56;
+  border: 1px solid #7393D6;
+  border-radius: 3px;
+  color: #EEE;
+  font-size: 16px;
+  float: right;
+  height: 38px;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+@keyframes fadein {
+  0%   { height: 0px; }
+  100% { height: 30px; }
+}
+
+.advanced-show {
+  animation: fadein 0.5s ease-out;
+  background-color: #152A56;
+  clear: both;
+  width: 500px;
+}
+
+.advanced-hide {
+  display: none;
+}
+
+.adv-section {
+  float: left;
+  line-height: 2;
+  margin: 4px 3px 0 0;
+  text-align: left;
+}
+
+.ms {
+  margin: 3px;
+}
+
+/* Start w/ WUBRG preselected */
+.ms-deselect {
+  opacity: 0.5;
 }
 
 body {
@@ -36,12 +92,50 @@ body {
   overflow-y: scroll;
 }
 
+select {
+  -webkit-appearance: menulist-button;
+  background-color: #152A56;
+  border-radius: 3px;
+  border: 1px solid #7393D6;
+  color: #EEE;
+  height: 28px;
+}
+
+/*option:checked {
+  display: none;
+}*/
+
 input[type=text] {
   background-color: #152A56;
   border: 1px solid #7393D6;
+  border-radius: 3px;
   color: #FFF;
+  float: left;
+  outline: none;
+}
+
+input[type=text]::placeholder {
+  color: #CCC;
+}
+
+.hdr-input {
+  max-width: 70px;
+  padding: 0 3px 0 3px;
+}
+
+.main-search {
   font-size: 16px;
   padding: 9px 8px 9px 8px;
-  outline: none;
-  width: 100%;
+  width: 340px;
+}
+
+.mana-filters {
+  font-size: 15px;
+  line-height: 2;
+  margin: 2px 0 0 0;
+}
+
+#sort {
+  height: 38px;
+  width: 35px;
 }
