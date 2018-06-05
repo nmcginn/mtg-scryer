@@ -188,7 +188,7 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-        <div className="DeckBox">{cardElements}</div>
+        <div className={this.state.loaded ? "DeckBox DeckboxExpanded" : "DeckBox"}>{cardElements}</div>
       </div>
     );
   }
