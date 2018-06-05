@@ -31,7 +31,9 @@ body {
   border-radius: 17px;
 }
 
-.DeckBox {}
+.DeckBox {
+  overflow-y: scroll;
+}
 
 .header {
   background-color: #152A56;
