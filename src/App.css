@@ -21,7 +21,7 @@ body {
 }
 
 .CardArt {
-  width: 235px;
+  width: 232px;
   height: auto;
   border: 3px solid transparent;
 }
@@ -31,12 +31,7 @@ body {
   border-radius: 17px;
 }
 
-.DeckBox {}
-
-/* scrollbar issue fix */
-.DeckboxExpanded {
-  height: 2000px;
-  min-height: 2000px;
+.DeckBox {
   overflow-y: scroll;
 }
 
