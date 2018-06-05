@@ -21,7 +21,7 @@ body {
 }
 
 .CardArt {
-  width: 235px;
+  width: 232px;
   height: auto;
   border: 3px solid transparent;
 }
@@ -31,7 +31,9 @@ body {
   border-radius: 17px;
 }
 
-.DeckBox {}
+.DeckBox {
+  overflow-y: scroll;
+}
 
 .header {
   background-color: #152A56;

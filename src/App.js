@@ -137,6 +137,11 @@ export default class App extends Component {
     const colorClass = ['w','u','b','r','g'].map(color =>
       `ms ms-${color} ms-cost ${this.state.colors[color] ? '' : 'ms-deselect'}`
     );
+    const deckBoxHeight = Math.floor((1 + cardElements.length) / 2) * 337;
+    const deckBoxStyle = {
+      height: `${deckBoxHeight}px`,
+      minHeight: `${deckBoxHeight}px`
+    };
     return(
       <div className="App">
         <div className="header">
@@ -188,7 +193,7 @@ export default class App extends Component {
             </div>
           </div>
         </div>
-        <div className="DeckBox">{cardElements}</div>
+        <div className="DeckBox" style={deckBoxStyle}>{cardElements}</div>
       </div>
     );
   }
